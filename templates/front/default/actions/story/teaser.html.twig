@@ -1,0 +1,37 @@
+{% trans_default_domain 'front_default' %}
+
+<div id="teaser-stories" class="teaser-stories position-relative">
+    <div id="carousel-stories"
+         class="carousel slide{% if not isMobile() %} carousel-fade{% endif %}"
+         data-bs-interval="5000"
+         data-bs-pause="1"
+         data-bs-autoplay="1"
+         data-bs-ride="carousel"
+         data-component="carousel-bootstrap">
+        <div class="carousel-inner">
+            {% for story in stories %}
+                <div class="carousel-item{% if loop.first %} active{% endif %}">
+                    <div class="card bg-white text-center d-flex pt-5 pb-5">
+                        <div class="my-auto">
+                            <p class="text-bold mb-4">"{{ story.message|striptags|trim('"') }}"</p>
+                            {% set age = story.birthday ? story.birthday|age : null %}
+                            <p class="mb-0">{{ story.firstName ~ " " ~ story.lastName|first }}.{% if age %} - {{ age ~ " ans"|trans|raw }}{% endif %}</p>
+                            {% if stories|length > 1 %}
+                                <div class="carousel-controls d-flex justify-content-center mt-4">
+                                    <div class="inner d-inline-block">
+                                        <a class="carousel-control-prev display-initial position-relative opacity-100 item-control cursor me-2" href="#carousel-stories" role="button" data-bs-slide="prev" aria-label="{{ "Précédent"|trans }}">
+                                            <i class="icon-chevron-left text-primary"></i>
+                                        </a>
+                                        <a class="carousel-control-next display-initial position-relative opacity-100 item-control cursor ms-2" href="#carousel-stories" role="button" data-bs-slide="next" aria-label="{{ "Suivant"|trans }}">
+                                            <i class="icon-chevron-right text-primary"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

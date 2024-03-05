@@ -1,0 +1,19 @@
+{% extends 'front/' ~ websiteTemplate ~ '/base.html.twig' %}
+
+{% trans_default_domain 'front_default' %}
+
+{% import 'core/src-macro.html.twig' as resources %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('front-' ~ websiteTemplate ~ '-cms', null, webpack) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('front-' ~ websiteTemplate ~ '-cms', null,  webpack) }}
+{% endblock %}
+
+{% block body %}
+    {% include 'front/' ~ websiteTemplate ~ '/include/thanks-card.html.twig' with {'message': "Merci de nous avoir partagé votre expérience !"|trans} only %}
+{% endblock %}

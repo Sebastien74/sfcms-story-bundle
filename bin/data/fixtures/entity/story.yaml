@@ -1,0 +1,43 @@
+#####################################
+#           Story                   #
+#####################################
+
+App\Entity\Module\Story\Story:
+    translations:
+        adminName:
+            fr: "Story"
+            en: 'Story'
+        singular:
+            fr: "Story"
+            en: 'Story'
+        plural:
+            fr: "Stories"
+            en: 'Stories'
+        add:
+            fr: 'Ajouter une story'
+            en: 'Add story'
+        delete:
+            fr: "Supprimer la story"
+            en: 'Delete story'
+        lastName:
+            fr: "Nom de famille"
+            en: 'Last name'
+        firstName:
+            fr: "Prénom"
+            en: 'first name'
+        email:
+            fr: "E-mail"
+            en: 'E-mail'
+        message:
+            fr: "Message"
+            en: 'Message'
+        active:
+            fr: "Activée"
+            en: 'Active'
+    columns:
+        - lastName
+        - firstName
+        - email
+        - message
+        - active
+        - infos

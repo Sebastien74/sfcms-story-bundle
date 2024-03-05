@@ -1,0 +1,31 @@
+{% trans_default_domain 'front_default' %}
+
+{% if not form.isRendered() %}
+    <div id="form-container-story" class="form-container position-relative">
+        <div class="form-ajax-container">
+            {% include 'front/' ~ websiteTemplate ~ '/include/form-loader.html.twig' %}
+            {{ form_start(form, {
+                'attr': {
+                    "id": "story-form",
+                    "class": 'story-form form-ajax',
+                    "action": path('front_story_form', {'website': website.id, 'block': block.id}),
+                    "novalidate": "novalidate",
+                    'data-modal': "story-form"
+                }}) }}
+                    <div class="row">
+                        {{ form_row(form.lastName) }}
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.birthday) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.message) }}
+                        {{ form_row(form.submit) }}
+                    </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    {% include 'front/' ~ websiteTemplate ~ '/include/thanks-modal.html.twig' with {
+        'formSuccess': formSuccess,
+        'modalMessage': 'Merci pour votre story'|trans,
+        'modalId': 'story-form',
+    } %}
+{% endif %}
