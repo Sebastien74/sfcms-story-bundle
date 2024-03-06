@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Controller\Front\Action;
 
 use App\Controller\Front\FrontController;
 use App\Entity\Core\Website;
@@ -30,7 +31,7 @@ class StoryController extends FrontController
      *
      * @throws \Exception
      */
-    public function form(Request $request, Website $website, Block $block = null, mixed $filter = null): Response
+    public function form(Request $request, Website $website, Block $block = null, mixed $filter = null): JsonResponse|Response
     {
         $configuration = $website->getConfiguration();
         $websiteTemplate = $configuration->getTemplate();
@@ -112,7 +113,6 @@ class StoryController extends FrontController
         $stories = $storyRepository->findActivated($website, $request->getLocale());
         $configuration = $website->getConfiguration();
         $template = $configuration->getTemplate();
-
         return $this->render('front/'.$template.'/actions/story/teaser.html.twig', [
             'stories' => $stories,
             'website' => $website,
