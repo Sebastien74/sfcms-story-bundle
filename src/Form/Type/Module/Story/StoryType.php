@@ -4,6 +4,7 @@ namespace App\Form\Type\Module\Story;
 
 use App\Entity\Module\Story\Story;
 use App\Form\Widget as WidgetType;
+use App\Service\Interface\CoreLocatorInterface;
 use App\Twig\Translation\IntlRuntime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -11,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -23,6 +23,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class StoryType extends AbstractType
 {
+    private TranslatorInterface $translator;
     private string $locale;
     private bool $inAdmin;
 
@@ -30,11 +31,11 @@ class StoryType extends AbstractType
      * TabType constructor.
      */
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly IntlRuntime $intlExtension,
-        private readonly RequestStack $requestStack)
-    {
-        $request = $this->requestStack->getMainRequest();
+        private readonly CoreLocatorInterface $coreLocator,
+        private readonly IntlRuntime $intlExtension
+    ) {
+        $this->translator = $this->coreLocator->translator();
+        $request = $coreLocator->request();
         $this->locale = $request->getLocale();
         $this->inAdmin = preg_match('/\/admin-'.$_ENV['SECURITY_TOKEN'].'/', $request->getUri());
     }
