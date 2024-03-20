@@ -5,8 +5,13 @@
     "config": {
         "slug": "story",
         "title": "Story",
-        "roleTitle": "Gestion des Stories",
         "cmd": "app:copy:bundle",
+        "roles": {
+            "ROLE_BANNER": {
+                "en": "Stories management",
+                "fr": "Gestion des stories"
+            }
+        },
         "module": {
             "name": "Story",
             "description": "Module permettant de créer et afficher des stories et d'afficher des formulaires de publication en front.",
@@ -48,8 +53,8 @@
         }
     ],
     "require": {
-        "php": ">=8.2.11",
-        "symfony/framework-bundle": "^6.4|^7.0"
+        "php": ">=8.3",
+        "symfony/framework-bundle": "^7.0"
     },
     "extra": {
         "branch-alias": {
