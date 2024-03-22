@@ -4,11 +4,12 @@
     {% set uri = app.request.uri %}
     {% set active = '/stories/' in uri %}
     {% set module = 'story'|moduleActive(allModules, true) %}
-    {% set i18n = i18nsModules['story'][app.user.locale] is defined ? i18nsModules['story'][app.user.locale] : i18nsModules['story']['fr'] %}
-    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : i18nsModules['story']['entity'].adminName %}
+    {% set i18n = i18nsModules['story'][app.user.locale] is defined ? i18nsModules['story'][app.user.locale] : (i18nsModules['story']['fr'] is defined ? i18nsModules['story']['fr'] : null) %}
+    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : (i18nsModules['story']['entity'].adminName is defined ? i18nsModules['story']['entity'].adminName : 'Bannières publicitaires'|trans) %}
+    {% set icon = i18nsModules['story']['entity'].iconClass is defined and i18nsModules['story']['entity'].iconClass ? i18nsModules['story']['entity'].iconClass : '/medias/icons/light/book-open.svg' %}
     <li{% if active %} class="active"{% endif %}>
         <a href="{{ path('admin_story_index', {"website": websiteId}) }}" data-toggle="preloader">
-            {{ i18nsModules['story']['entity'].iconClass|iconHtml({'width': 11, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
+            {{ icon|icon(11, 15, 'white me-3'}) }}{{ title|raw }}
         </a>
     </li>
 {% endif %}

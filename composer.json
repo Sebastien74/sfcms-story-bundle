@@ -15,7 +15,7 @@
         "module": {
             "name": "Story",
             "description": "Module permettant de créer et afficher des stories et d'afficher des formulaires de publication en front.",
-            "icon": "/medias/icons/fontawesome/light/book-open.svg"
+            "icon": "/medias/icons/light/book-open.svg"
         },
         "actions": [
             {
@@ -23,7 +23,7 @@
                 "controller": "App\\Controller\\Front\\Action\\StoryController",
                 "entity": null,
                 "action": "teaser",
-                "icon": "/medias/icons/fontawesome/light/book-open.svg",
+                "icon": "/medias/icons/light/book-open.svg",
                 "card": false,
                 "dropdown": true
             },
@@ -32,7 +32,7 @@
                 "controller": "App\\Controller\\Front\\Action\\StoryController",
                 "entity": null,
                 "action": "form",
-                "icon": "/medias/icons/fontawesome/brand/wpforms.svg",
+                "icon": "/medias/icons/brand/wpforms.svg",
                 "card": false,
                 "dropdown": true
             }
